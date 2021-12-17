@@ -1,5 +1,4 @@
 package com.example.NeoSoft.beans;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,28 +14,30 @@ import lombok.Data;
 public class User {
 
 	@Id
-	@Column(name="userId")
+	@Column(name="userId",length = 32)
 	private String userId;
 	
     @Size(min=2,message="name should have atleast 2 character")
-    @Column(name="firstName")
+    
+    @Column(name="firstName",length = 32)
 	private String firstName;
     
     @Size(min=2,message="Surname should have atleast 2 character")
-    @Column(name="surName")
+    @Column(name="surName",length = 32)
 	private String surName;
     
-    @Column(name="dateOfJoining")
-    private Date dateOfJoining;
+    @Column(name="dateOfJoining",length = 32)
+    private String dateOfJoining;
  
-    @Column(name="datefFBirth")
-    private Date dateOfBirth;
+    @Column(name="datefFBirth",length = 32)
+    private String dateOfBirth;
     
-    @Column(name="PinCode")
+    @Column(name="PinCode",length = 32)
     private String pinCode;
  	
+    public User() {}
 	
-	public User(String userId, String firstName, String surName ,Date dateOfJoining, Date dateOfBirth, String pinCode) {
+	public User(String userId, String firstName, String surName ,String dateOfJoining, String dateOfBirth, String pinCode) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
