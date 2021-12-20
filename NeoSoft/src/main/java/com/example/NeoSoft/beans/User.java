@@ -34,10 +34,13 @@ public class User {
     
     @Column(name="PinCode",length = 32)
     private String pinCode;
+    
+    @Column(name="deleteFlag",length = 2)
+    private String deleteFlag;
  	
     public User() {}
 	
-	public User(String userId, String firstName, String surName ,String dateOfJoining, String dateOfBirth, String pinCode) {
+	public User(String userId, String firstName, String surName ,String dateOfJoining, String dateOfBirth, String pinCode,String deleteFlag ) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -45,6 +48,7 @@ public class User {
 		this.dateOfJoining = dateOfJoining;
 		this.dateOfBirth = dateOfBirth;
 		this.pinCode = pinCode;
+		this.deleteFlag=deleteFlag;
 	}
 	
 }

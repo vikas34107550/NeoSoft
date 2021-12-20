@@ -2,11 +2,13 @@ package com.example.NeoSoft.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.NeoSoft.beans.User;
+import com.example.NeoSoft.exception.UserNotFoundException;
 import com.example.NeoSoft.service.UserService;
 
 
@@ -40,12 +43,50 @@ public class UserController {
 		
 	}
 	
-    @RequestMapping(value = "/getUserSorted", method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserSortedDOJ", method = RequestMethod.GET)
 	
-	public List<User> getUserProfileSorted() {
+	public List<User> getUserProfileSortedDOJ() {
 
-		return service.getUserSorted();
+		return service.getUserSortedDOJ();
 		
 	}
+    
+    @RequestMapping(value = "/getUserSortedDOB", method = RequestMethod.GET)
+	
+	public List<User> getUserProfileSortedDOB() {
+
+		return service.getUserSortedDOB();
+		
+	}
+    
+    
+    @RequestMapping(method=RequestMethod.DELETE,path="/hardDelete/{id}")
+	public void hardDeleteUser(@PathVariable String id)
+	
+	{
+		
+		 Optional<User> user=service.findUserById(id);
+		if(user==null)
+		{
+			throw new UserNotFoundException("id"+id) ;
+		}
+		service.hardDeleteUser(id);
+		
+	}
+    
+    @RequestMapping(method=RequestMethod.DELETE,path="/softDelete/{id}")
+	public void softDeleteUser(@PathVariable String id)
+	
+	{
+		
+		 Optional<User> user=service.findUserById(id);
+		if(user==null)
+		{
+			throw new UserNotFoundException("id"+id) ;
+		}
+		
+		service.softDeleteUser(id);
+	}
+    
 
 }

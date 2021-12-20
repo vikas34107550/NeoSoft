@@ -15,6 +15,6 @@ import com.example.NeoSoft.beans.User;
 
 	 public  List<User> findByOrderByDateOfJoiningAsc();
 		 
-	
+	 public  List<User> findByOrderByDateOfBirthAsc();
 
 }
