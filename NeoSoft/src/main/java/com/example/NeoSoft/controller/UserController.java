@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.NeoSoft.beans.User;
 import com.example.NeoSoft.exception.UserNotFoundException;
+import com.example.NeoSoft.repository.UserRepository;
 import com.example.NeoSoft.service.UserService;
 
 
@@ -31,7 +32,7 @@ public class UserController {
 	
 	{
 		
-		User savedUser =service.save(user);
+		User savedUser =service.registerUser(user);
 		return savedUser;
 	}
 	
@@ -88,5 +89,19 @@ public class UserController {
 		service.softDeleteUser(id);
 	}
     
+    
+    @RequestMapping(method=RequestMethod.PUT,path="/editUser")
+   	public void editUser( @RequestBody User user)
+   	
+   	{
+   		
+   		 Optional<User> user1=service.findUserById(user.getUserId());
+   		if(user1==null)
+   		{
+   			throw new UserNotFoundException("id"+user.getUserId()) ;
+   		}
+   		service.editUser(user);
+   		
+   	}
 
 }

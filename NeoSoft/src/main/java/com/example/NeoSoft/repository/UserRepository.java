@@ -12,6 +12,7 @@ import com.example.NeoSoft.beans.User;
 		
 	 public List<User> findByFirstNameOrSurNameOrPinCode(@Param("firstName") String firstName, @Param("surName") String surName,@Param("pinCode") String pinCode);
      
+	 
 
 	 public  List<User> findByOrderByDateOfJoiningAsc();
 		 

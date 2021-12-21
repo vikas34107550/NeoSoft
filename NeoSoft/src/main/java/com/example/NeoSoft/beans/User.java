@@ -1,5 +1,7 @@
 package com.example.NeoSoft.beans;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,10 +29,10 @@ public class User {
 	private String surName;
     
     @Column(name="dateOfJoining",length = 32)
-    private String dateOfJoining;
+    private Date dateOfJoining;
  
     @Column(name="datefFBirth",length = 32)
-    private String dateOfBirth;
+    private Date dateOfBirth;
     
     @Column(name="PinCode",length = 32)
     private String pinCode;
@@ -40,7 +42,7 @@ public class User {
  	
     public User() {}
 	
-	public User(String userId, String firstName, String surName ,String dateOfJoining, String dateOfBirth, String pinCode,String deleteFlag ) {
+	public User(String userId, String firstName, String surName ,Date dateOfJoining, Date dateOfBirth, String pinCode,String deleteFlag ) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;

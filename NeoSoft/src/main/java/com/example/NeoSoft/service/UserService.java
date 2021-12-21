@@ -21,7 +21,7 @@ public class UserService {
 		
 	}
 	
-	public User save(User user)
+	public User registerUser(User user)
 	{
 		User user1=userRepository.save(user);
 		return user1;
@@ -60,6 +60,27 @@ public class UserService {
 		user.get().setDeleteFlag("Y");
 		userRepository.save(user.get());
 	    }
+		
+		
+		
+	}
+	
+	public void editUser(User user)
+	{
+		Optional<User> user1=userRepository.findById(user.getUserId()); 
+		if(user1.isPresent())
+		{
+			user1.get().setFirstName(user.getFirstName());
+	   		user1.get().setSurName(user.getSurName());
+	   		user1.get().setDateOfBirth(user.getDateOfBirth());
+	   		user1.get().setDateOfJoining(user.getDateOfJoining());
+	   		user1.get().setPinCode(user.getPinCode());
+	   		user1.get().setDeleteFlag(user.getDeleteFlag());
+	   		
+	   		userRepository.save(user1.get());
+	    }
+		
+		
 		
 	}
 	
